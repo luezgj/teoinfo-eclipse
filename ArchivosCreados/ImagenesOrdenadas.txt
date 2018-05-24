@@ -1,0 +1,8 @@
+Imagen Original: Imagen{Imagenes/Will(Original).bmp}- Media: 189.96971- Desvio: 55.69078
+Imagen{Imagenes/Will_1.bmp}- Media: 192.44466- Desvio: 55.140896-Correlacion: 0.9800519
+Imagen{Imagenes/Will_3.bmp}- Media: 189.18884- Desvio: 56.760254-Correlacion: 0.97921723
+Imagen{Imagenes/Will_2.bmp}- Media: 195.18202- Desvio: 73.816246-Correlacion: 0.9461725
+Imagen{Imagenes/Will_4.bmp}- Media: 185.9115- Desvio: 57.273754-Correlacion: 0.9239908
+Imagen{Imagenes/Will_7.bmp}- Media: 187.7061- Desvio: 56.06311-Correlacion: 0.9126194
+Imagen{Imagenes/Will_5.bmp}- Media: 197.5907- Desvio: 78.59533-Correlacion: 0.88407177
+Imagen{Imagenes/Will_6.bmp}- Media: 191.24237- Desvio: 53.97036-Correlacion: 0.8240804
