@@ -1,6 +1,6 @@
 package teoriadelainformacion;
 
-public class DistProbCondicional extends DistProb {
+public class DistProbCondicional<T extends Comparable<T>> extends DistProb {
 
 	Imagen img1;
     Imagen img2;
@@ -11,16 +11,20 @@ public class DistProbCondicional extends DistProb {
     private int totalOcurrencias;
     private int nEventos;
 
-    public DistProbCondicional(Imagen imagen1, Imagen imagen2) {
-        this.img1 = imagen1;
-        this.img2 = imagen2;
+    public DistProbCondicional(T[] eventosX, T[] eventosY) {
+    	
+    }
+    
+    public DistProbCondicional(/*Imagen imagen1, Imagen imagen2*/) {
+        //this.img1 = imagen1;
+        //this.img2 = imagen2;
         
-        nEventos = img1.NRO_DE_COLORES;
+        nEventos = img1.getDistribucion().getNEventos();
         
         MatrizConjunta = new int[nEventos][nEventos];
         
-        ArregloX = new int[img1.NRO_DE_COLORES];
-        ArregloY = new int[img1.NRO_DE_COLORES];
+        ArregloX = new int[img1.getDistribucion().getNEventos()];
+        ArregloY = new int[img1.getDistribucion().getNEventos()];
         
         inicializarMatriz();
         inicializarArreglos(ArregloX,ArregloY);
@@ -89,6 +93,10 @@ public class DistProbCondicional extends DistProb {
             mediaOut+=pixels1[i]*pixels2[i];
         }
         return mediaOut/pixels1.length;
+	}
+	
+	public DistProbSimple<T> getDistX(){
+		return img1.getDistribucion();
 	}
 
 }

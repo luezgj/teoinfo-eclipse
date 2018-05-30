@@ -8,6 +8,10 @@ public class Canal {
 		this.distribucion = distribucion;
 	}
 	
+	public Canal(Imagen imagen1, Imagen imagen2) {
+		
+	}
+	
 	public float getRuido() {
 		float entropiaYdadoX = 0;
 		float sumatoria=0;
@@ -44,5 +48,7 @@ public class Canal {
 			
 		return entropiaX + entropiaXdadoY;
 	}
+	
+	
 	
 }
