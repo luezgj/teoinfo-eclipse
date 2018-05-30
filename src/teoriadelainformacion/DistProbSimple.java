@@ -78,11 +78,4 @@ public class DistProbSimple<T extends Comparable<T>> extends DistProb{
         }
         return desvio;
     }
-
-	@Override
-	public float getEntropia() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-    
 }

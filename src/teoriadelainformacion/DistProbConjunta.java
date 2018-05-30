@@ -41,9 +41,4 @@ public class DistProbConjunta extends DistProb{
         return img1.getDistribucion().getProb(eventoA)*img2.getDistribucion().getProb(eventoB);
     }
 
-	@Override
-	public float getEntropia() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

@@ -23,5 +23,4 @@ public abstract class DistProb {
     
     protected abstract float getMediaSpecific();
     
-    public abstract float getEntropia();
 }
