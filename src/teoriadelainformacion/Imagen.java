@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+
 import javax.imageio.ImageIO;
 
 public class Imagen {
@@ -70,11 +72,11 @@ public class Imagen {
     
     public DistProbSimple<Integer> getDistribucion(){
         int [] pixeles=getPixeles();
-        Integer [] etiquetas = new Integer[256];
-        for (int i = 0; i < etiquetas.length; i++) {
-            etiquetas[i]=i;
+        HashMap<Integer,Integer> etiquetas = new HashMap<>();
+        for (int i = 0; i < NRO_DE_COLORES; i++) {
+            etiquetas.put(i, i);
         }
-        DistProbSimple<Integer> salida = new DistProbSimple(NRO_DE_COLORES,etiquetas);
+        DistProbSimple<Integer> salida = new DistProbSimple<Integer>(NRO_DE_COLORES,etiquetas);
         for (int i=0; i < pixeles.length; i++){
             salida.addOcurrencia(pixeles[i], 1);
         }
