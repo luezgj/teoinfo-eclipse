@@ -15,14 +15,12 @@ import java.util.List;
 //Esta clase solo puede decodificar un mensaje por vez
 public class Decodificador {
 
-    private static String mensajeDecodificando;
     private static char caracter;
     private static int cantSimbolosLeidos;
     private static String secuenciaBit;
     
     public static <T extends Comparable<T>> List<T> decodificar(String mensajeCodificado, int cantSimbolos, DistProbSimple<T> probabilidades) {
-        List<T> decodificado = new LinkedList();
-        mensajeDecodificando = mensajeCodificado;
+        List<T> decodificado = new LinkedList<T>();
 
         Nodo<T> arbolCodigo = CodificacionHuffman.generarArbol(probabilidades);
         Nodo<T> auxNodo = arbolCodigo;

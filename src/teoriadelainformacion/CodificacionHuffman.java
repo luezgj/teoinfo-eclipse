@@ -54,7 +54,7 @@ public class CodificacionHuffman {
 		while (Nodos.size() > 1) {
 			Nodo<T> nodoDer = Nodos.get(0);
 			Nodo<T> nodoIzq = Nodos.get(1);
-			Nodo<T> padre = new Nodo(nodoIzq.frecuencia + nodoDer.frecuencia,nodoIzq,nodoDer);
+			Nodo<T> padre = new Nodo<T>(nodoIzq.frecuencia + nodoDer.frecuencia,nodoIzq,nodoDer);
 			Nodos.remove(nodoIzq);
 			Nodos.remove(nodoDer);
 			Nodos.add(padre);

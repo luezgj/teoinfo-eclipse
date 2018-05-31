@@ -13,6 +13,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -67,9 +68,9 @@ public class ManejadorArchivos {
 	            
 	        int width=0, height=0;
 	            
-	        Integer[] etiquetas= new Integer[Imagen.NRO_DE_COLORES];
-	        for (int i = 0; i < etiquetas.length; i++) {
-	        	etiquetas[i]= i;
+	        HashMap<Integer,Integer> etiquetas = new HashMap<>();
+	        for (int i = 0; i < Imagen.NRO_DE_COLORES; i++) {
+	            etiquetas.put(i, i);
 	        }
 	            
 	        DistProbSimple<Integer> distribucion= new DistProbSimple<Integer>(Imagen.NRO_DE_COLORES,etiquetas);
