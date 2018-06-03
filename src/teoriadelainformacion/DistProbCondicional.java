@@ -38,7 +38,8 @@ public class DistProbCondicional<TX extends Comparable<TX>, TY extends Comparabl
     }
     
 	public float getProbCondYdadoX(int x,int y) {
-    	
+    	float ProbX = distX.getProb(x);
+    	float ProbConj = getProbConjunta(x,y);
 		return getProbConjunta(x,y) / distX.getProb(x);
     }
     

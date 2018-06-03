@@ -7,11 +7,15 @@ import java.util.Map;
 
 public class GeneradorMontecarlo<T extends Comparable<T>> {
 	
+	public GeneradorMontecarlo() {
+	}
+	
 	public List<T> generarMensaje(DistProbSimple<T> distribucion, int longitud){
 		List<T> mensaje= new LinkedList<>();
+		Map<T,Double> freqRelAcumuladas=getFrecAcumulada(distribucion.getFrecuencia(), distribucion.getOcurrencias());
 		
 		while(longitud--!=0){
-			mensaje.add(generarSimbolo(getFrecAcumulada(distribucion.getFrecuencia(), distribucion.getOcurrencias())));
+			mensaje.add(generarSimbolo(freqRelAcumuladas));
 		}
 		
 		return mensaje;
