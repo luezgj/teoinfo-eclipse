@@ -20,7 +20,7 @@ import teoriadelainformacion.Imagen;
 import teoriadelainformacion.InformacionArchivo;
 import teoriadelainformacion.ManejadorArchivos;
 
-public class Test {
+public class TestPrimeraParte {
 	
 	static final String dir = "ArchivosCreados/";
 	

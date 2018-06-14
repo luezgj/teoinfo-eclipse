@@ -138,16 +138,18 @@ public class Canal<TX extends Comparable<TX>,TY extends Comparable<TY>> {
 		return mensajeSalida;
 	}
 	
-	public Float[][] getMatrizTransicion() {
+	public String getInfoMatrizTransicion() {
 		int cantSimbolosX = distribucion.getDistX().getNEventos();
 		int cantSimbolosY = distribucion.getDistY().getNEventos();
 		
-		Float[][] matrizTransicion = new Float[cantSimbolosX][cantSimbolosY];
+		StringBuilder outBuilder = new StringBuilder();
+		String fila="";
+		for(int j = 0 ; j < cantSimbolosY ; j++) {
+			for( int i=0 ; i < cantSimbolosX; i++)
+				if (distribucion.getProbCondYdadoX(i, j) != 0)
+					outBuilder.append("X = "+i+" Y = "+j+" "+distribucion.getProbCondYdadoX(i, j)+"\n");
+		}
 		
-		for(int i = 0 ; i < matrizTransicion.length ; i++)
-			for( int j=0 ; j < matrizTransicion.length; j++)
-				matrizTransicion[i][j]=distribucion.getProbCondYdadoX(i, j);
-		
-		return matrizTransicion;
+		return outBuilder.toString();
 	}
 }
