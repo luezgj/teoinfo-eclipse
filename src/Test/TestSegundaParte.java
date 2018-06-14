@@ -13,16 +13,15 @@ import teoriadelainformacion.ManejadorArchivos;
 public class TestSegundaParte {
 
 	static final String dir = "ArchivosCreados/";
-	final static int NRO_DE_COLORES=256;;
+	final static int NRO_DE_COLORES=256;
 
 	public static String getInfoCanal(List<Integer> mensajeGenerado,List<Integer> mensajeTransmitido) {
 		String informacion="";
 		
-		informacion +=" Mensaje Generado: "+mensajeGenerado.toString()+"\n";
 		informacion +=" Mensaje Transmitido: "+mensajeTransmitido.toString()+"\n";
 		
-		Integer[] eventosX = new Integer[NRO_DE_COLORES];
-		Integer[] eventosY = new Integer[NRO_DE_COLORES];
+		Integer[] eventosX = new Integer[mensajeGenerado.size()];
+		Integer[] eventosY = new Integer[mensajeTransmitido.size()];
 		eventosX=mensajeGenerado.toArray(eventosX);
 		eventosY=mensajeTransmitido.toArray(eventosY);
 		
@@ -55,7 +54,12 @@ public class TestSegundaParte {
         List<Integer> mensajeTransmitido = new ArrayList<>();
         Integer[] eventosX;
         Integer[] eventosY;
-        Canal<Integer,Integer> canalGenerado;
+        
+        DistProbCondicional<Integer,Integer> probCond;
+        Canal<Integer,Integer> canal1;
+		Canal<Integer,Integer> canal2;
+		Canal<Integer,Integer> canal3; 
+		Canal<Integer,Integer> canalGenerado;
         
 		//Ejercicios
 		
@@ -63,47 +67,56 @@ public class TestSegundaParte {
 		//Genero el canal entre la imagen original y canal 2
 		int[] eventosImgCanal2 = imgCanal2.getPixeles();
 		
-		DistProbCondicional<Integer,Integer> probCond = new DistProbCondicional<>(eventosImgOrg,eventosImgCanal2,distImgOriginal,distImgCanal2);
-		Canal<Integer,Integer> canal = new Canal<>(probCond);
+		probCond = new DistProbCondicional<>(eventosImgOrg,eventosImgCanal2,distImgOriginal,distImgCanal2);
+		canal1 = new Canal<>(probCond);
 		
-		contenidoArchivoEjercicio1 = "Matriz de transicion del canal generado por la imagen original y salida del canal 2"+"\n"+"\n"+canal.getInfoMatrizTransicion()+"\n";
-		contenidoArchivoEjercicio2 = "Canal generado por la imagen original y salida del canal 2 "+"Ruido: "+canal.getRuido()+"Perdida: "+canal.getPerdida()+"Informacion Mutua: "+canal.getInformacionMutua()+"\n";
+		contenidoArchivoEjercicio1 = "Matriz de transicion del canal generado por la imagen original y salida del canal 2"+"\n"+"\n"+canal1.getInfoMatrizTransicion()+"\n";
+		contenidoArchivoEjercicio2 = "Canal generado por la imagen original y salida del canal 2 "+"Ruido: "+canal1.getRuido()+"Perdida: "+canal1.getPerdida()+"Informacion Mutua: "+canal1.getInformacionMutua()+"\n";
 		contenidoArchivoEjercicio3 = "Canal generado por la imagen original y salida del canal 2"+"\n"+"\n";
-		while ( longitud < 10000) {
-			mensajeGenerado=generador.generarMensaje(distImgOriginal, longitud);
-			mensajeTransmitido=canal.transmitir(mensajeGenerado);
-			contenidoArchivoEjercicio3 += "Cantidad de datos: "+longitud+"\n";
-			
-			contenidoArchivoEjercicio3 += getInfoCanal(mensajeGenerado, mensajeTransmitido);
-			
-			longitud*=10;
-		}
-		contenidoArchivoEjercicio3+="Con método de convergencia: "+"\n";
-		mensajeTransmitido=canal.transmitir(generador, mensajeGenerado);
-		contenidoArchivoEjercicio3 += getInfoCanal(mensajeGenerado, mensajeTransmitido);
-				
 		//Genero el canal entre la imagen original y canal 8
 		int[] eventosImgCanal8 = imgCanal8.getPixeles();
-		
+				
 		probCond = new DistProbCondicional<>(eventosImgOrg,eventosImgCanal8,distImgOriginal,distImgCanal8);
-		canal = new Canal<>(probCond);
-		contenidoArchivoEjercicio1 += "Matriz de transicion del canal generado por la imagen original y salida del canal 8"+"\n"+"\n"+canal.getInfoMatrizTransicion()+"\n";
-		contenidoArchivoEjercicio2 += "Canal generado por la imagen original y salida del canal 8 "+"Ruido: "+canal.getRuido()+"Perdida: "+canal.getPerdida()+"Informacion Mutua: "+canal.getInformacionMutua()+"\n";
+		canal2 = new Canal<>(probCond);
+		contenidoArchivoEjercicio1 += "Matriz de transicion del canal generado por la imagen original y salida del canal 8"+"\n"+"\n"+canal2.getInfoMatrizTransicion()+"\n";
+		contenidoArchivoEjercicio2 += "Canal generado por la imagen original y salida del canal 8 "+"Ruido: "+canal2.getRuido()+"Perdida: "+canal2.getPerdida()+"Informacion Mutua: "+canal2.getInformacionMutua()+"\n";
 		
 		//Genero el canal entre la imagen original y canal 10
 		int[] eventosImgCanal10 = imgCanal10.getPixeles();
 		
 		probCond = new DistProbCondicional<>(eventosImgOrg,eventosImgCanal10,distImgOriginal,distImgCanal10);
-		canal = new Canal<>(probCond);
-		contenidoArchivoEjercicio1 += "Matriz de transicion del canal generado por la imagen original y salida del canal 10"+"\n"+"\n"+canal.getInfoMatrizTransicion()+"\n";
-		contenidoArchivoEjercicio2 += "Canal generado por la imagen original y salida del canal 10 "+"Ruido: "+canal.getRuido()+"Perdida: "+canal.getPerdida()+"Informacion Mutua: "+canal.getInformacionMutua()+"\n";
-		
-		//Creo el archivo
+		canal3 = new Canal<>(probCond);
+		contenidoArchivoEjercicio1 += "Matriz de transicion del canal generado por la imagen original y salida del canal 10"+"\n"+"\n"+canal3.getInfoMatrizTransicion()+"\n";
+		contenidoArchivoEjercicio2 += "Canal generado por la imagen original y salida del canal 10 "+"Ruido: "+canal3.getRuido()+"Perdida: "+canal3.getPerdida()+"Informacion Mutua: "+canal3.getInformacionMutua()+"\n";
+
+		while ( longitud < 1000000) {
+			contenidoArchivoEjercicio3 += "Cantidad de datos: "+longitud+"\n"+"\n";
+			
+			mensajeGenerado=generador.generarMensaje(distImgOriginal, longitud);
+			contenidoArchivoEjercicio3 += "Mensaje Generado: "+mensajeGenerado.toString()+"\n";
+			
+			mensajeTransmitido=canal1.transmitir(mensajeGenerado);
+			contenidoArchivoEjercicio3 += "Canal1"+"\n"+getInfoCanal(mensajeGenerado, mensajeTransmitido);
+			
+			mensajeTransmitido=canal2.transmitir(mensajeGenerado);
+			contenidoArchivoEjercicio3 += "Canal2"+"\n"+getInfoCanal(mensajeGenerado, mensajeTransmitido);
+			
+			mensajeTransmitido=canal3.transmitir(mensajeGenerado);
+			contenidoArchivoEjercicio3 += "Canal3"+"\n"+getInfoCanal(mensajeGenerado, mensajeTransmitido);
+
+			longitud*=10;
+		}
+		contenidoArchivoEjercicio3+="Con método de convergencia: "+"\n";
+		mensajeTransmitido=canal1.transmitir(generador, mensajeGenerado);
+		contenidoArchivoEjercicio3 += "Mensaje Generado: "+mensajeGenerado.toString()+"\n"+"\n";
+		contenidoArchivoEjercicio3 += "Canal1"+"\n"+getInfoCanal(mensajeGenerado, mensajeTransmitido);
+		contenidoArchivoEjercicio3 += "Canal2"+"\n"+getInfoCanal(mensajeGenerado, mensajeTransmitido);
+		contenidoArchivoEjercicio3 += "Canal3"+"\n"+getInfoCanal(mensajeGenerado, mensajeTransmitido);
+				
+		//Creo y escribe el archivo
 		ManejadorArchivos.guardarEnArchivo(dir+"SegundaParteEjercicio1.txt", contenidoArchivoEjercicio1);
 		ManejadorArchivos.guardarEnArchivo(dir+"SegundaParteEjercicio2.txt", contenidoArchivoEjercicio2);
 		ManejadorArchivos.guardarEnArchivo(dir+"SegundaParteEjercicio3.txt", contenidoArchivoEjercicio3);
-		
-		//Ejercicio 2
 		
 	}
 }

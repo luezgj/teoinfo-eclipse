@@ -25,29 +25,25 @@ public class DistProbCondicional<TX extends Comparable<TX>, TY extends Comparabl
     	totalOcurrencias = eventosX.length;
     }
     
-    public DistProbCondicional(TX[] eventosX, TY[] eventosY, int nEventos){
-    	HashMap<TX,Integer> etiquetasX = new HashMap<>();
+    public DistProbCondicional(Integer[] eventosX, Integer[] eventosY, int nEventos){
+    	HashMap<Integer,Integer> etiquetas = new HashMap<>();
         for (int i = 0; i < nEventos; i++) {
-            etiquetasX.put(eventosX[i], i);
+        	etiquetas.put(i, i);
         }
-        distX = new DistProbSimple<TX>(nEventos,etiquetasX);
-        
-        HashMap<TY,Integer> etiquetasY = new HashMap<>();
-        for (int i = 0; i < nEventos; i++) {
-            etiquetasY.put(eventosY[i], i);
-        }
-        distY = new DistProbSimple<TY>(nEventos,etiquetasY);
+        DistProbSimple<Integer> distX = new DistProbSimple<Integer>(nEventos,etiquetas);
+        DistProbSimple<Integer> distY = new DistProbSimple<Integer>(nEventos,etiquetas);
+     
         for (int i=0; i < eventosX.length; i++){
-        	distX.addOcurrencia(distX.getIndice(eventosX[i]), 1);
-        	distY.addOcurrencia(distY.getIndice(eventosY[i]), 1);
+        	distX.addOcurrencia(eventosX[i], 1);
+        	distY.addOcurrencia(eventosY[i], 1);
         }
         
         MatrizConjunta = new int[distX.getNEventos()][distY.getNEventos()];
         
         inicializarMatriz();
-        
+
     	for (int i=0; i < eventosX.length ; i++){
-    		MatrizConjunta[distX.getIndice(eventosX[i])][distY.getIndice(eventosY[i])]++;
+    		MatrizConjunta[eventosX[i]][eventosY[i]]++;
     	}
     	
     	totalOcurrencias = eventosX.length;

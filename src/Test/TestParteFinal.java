@@ -55,7 +55,7 @@ public class TestParteFinal {
 		Imagen imgCanal2 = new Imagen("Imagenes/Will_Canal2.bmp"),
 		imgCanal8 = new Imagen("Imagenes/Will_Canal8.bmp"),
 		imgCanal10 = new Imagen("Imagenes/Will_Canal10.bmp"),
-		imgWill6 = new Imagen("Imagen/will_6.bmp"),
+		imgWill6 = new Imagen("Imagenes/Will_6.bmp"),
 		imgOrg = new Imagen("Imagenes/Will(Original).bmp");
 		
 		String contenidoArchivo;
