@@ -109,8 +109,10 @@ public class DistProbSimple<T extends Comparable<T>> extends DistProb{
     public float getEntropia(){
     	float entropia=0;
     	for (int i = 0; i < ocurrencias.length; i++) {
-    		float probi=(float)ocurrencias[i]/(float)totalOcurrencias;
-    		entropia+= -(probi * ( Math.log(probi) / Math.log(2) ) );
+    		if (ocurrencias[i] != 0) {
+    			float probi=(float)ocurrencias[i]/(float)totalOcurrencias;
+    			entropia+= -(probi * ( Math.log(probi) / Math.log(2) ) );
+    		}
 		}
     	return entropia;
     }

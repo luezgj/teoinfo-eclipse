@@ -50,7 +50,7 @@ public class Canal<TX extends Comparable<TX>,TY extends Comparable<TY>> {
 					sumatoria+=probCond * LogBase2;
 				}
 			}
-			entropiaXdadoY*=-distribucion.getDistY().getProb(col)*sumatoria;
+			entropiaXdadoY+=-distribucion.getDistY().getProb(col)*sumatoria;
 			sumatoria=0;
 		}
 			
@@ -58,7 +58,7 @@ public class Canal<TX extends Comparable<TX>,TY extends Comparable<TY>> {
 	}
 	
 	public double getInformacionMutua() {	
-		return distribucion.getDistX().getEntropia() - getPerdida();
+		return distribucion.getDistY().getEntropia() - getRuido();
 	}
 	
 	public List<TY> transmitir(List<TX> mensaje){
@@ -81,7 +81,7 @@ public class Canal<TX extends Comparable<TX>,TY extends Comparable<TY>> {
 		double acum = distribucion.getProbCondYdadoX(indiceX,indiceY);
 		while (random > acum) {
 			indiceY++;
-			acum += distribucion.getProbCondXdadoY(indiceX,indiceY);
+			acum += distribucion.getProbCondYdadoX(indiceX,indiceY);
 		}
 		return (TY) distY.getSimbolo(indiceY);
 	}
@@ -106,8 +106,9 @@ public class Canal<TX extends Comparable<TX>,TY extends Comparable<TY>> {
     }
     
 	//Transmite hasta que converga
-	public List<TY> transmitir(GeneradorMontecarlo<TX> generador){
+	public List<TY> transmitir(GeneradorMontecarlo<TX> generador, List<TX> mensajeGenerado){
 		List<TY> mensajeSalida = new ArrayList<>();
+		mensajeGenerado = new ArrayList<>();
 		
 		int cantSimbolosX = distribucion.getDistX().getNEventos();
 		int cantSimbolosY = distribucion.getDistY().getNEventos();
@@ -131,6 +132,7 @@ public class Canal<TX extends Comparable<TX>,TY extends Comparable<TY>> {
 			M_act[indiceSimboloX][indiceSimboloY]++;
 			longitudDelMensaje++;
 			
+			mensajeGenerado.add(simboloAEmitir);
 			mensajeSalida.add(simboloTransmitido);
 		}
 		return mensajeSalida;
