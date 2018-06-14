@@ -95,6 +95,17 @@ public class DistProbSimple<T extends Comparable<T>> extends DistProb{
     	return eventTag.get(evento);
     }
     
+    public T getSimbolo(int indice) {
+    	Set<T> simbolos=eventTag.keySet();
+    	int aux = 0;
+    	for (T simbolo : simbolos) {
+    		if (aux == indice)
+    			return simbolo;
+    		aux++;
+    	}
+    	return null;
+    }
+    
     public float getEntropia(){
     	float entropia=0;
     	for (int i = 0; i < ocurrencias.length; i++) {
